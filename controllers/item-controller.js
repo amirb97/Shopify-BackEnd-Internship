@@ -35,7 +35,10 @@ const itemController = {
     updateItem({ params, body }, res) {
         Item.findOneAndUpdate(
             { _id: params.id },
-            { itemName: body.itemName },
+            { 
+                itemName: body.itemName,
+                quantity: body.quantity
+            },
             { new: true, runValidators: true })
           .then(dbItemData => {
               if (!dbItemData) {
