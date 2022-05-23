@@ -21,13 +21,20 @@
     </div>
     {{#each inventory}}
         <div class="col-3 text-center mt-2 card">
-            <h2>
-                Item Name:
-                {{itemName}}
-            </h2>
-            <p>Quantity:{{quantity}}</p>
+            <h2 id="edit-name">{{itemName}}</h2>
+            Quantity:<p id="edit-quantity">{{quantity}}</p>
+            Id:<p id="edit-quantity">{{id}}</p>
+            <button class="btn btn-outline-primary m-2" onClick="itemEditHandler({{id}})">Edit</button>
+            <button class="btn btn-outline-success m-2" onClick="addShipmentHandler({{id}})">Add to Shipment</button>
+            <button class="btn btn-outline-danger m-2" onClick="itemDeleteHandler({{id}})">Delete</button>
         </div>
     {{/each}}
+    <div class="row border-top mt-4" id="shipment">
+        <h2 class="text-center">Current Shipment:</h2>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-outline-dark m-2" onClick="submitShipment()">Submit Shipment</button>
+    </div>
 </div>
 
 <script src="/js/items.js"></script>

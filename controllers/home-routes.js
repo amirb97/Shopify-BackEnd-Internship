@@ -5,6 +5,7 @@ const { Item } = require('../models');
 router.get('/', (req, res) => {
     Item.findAll({
         attributes: [
+          'id',
           'itemName',
           'quantity'
         ]
