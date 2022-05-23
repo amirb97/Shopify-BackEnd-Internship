@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="row about border-bottom">
+        <h1 class="text-center">All Current Items In Iventory</h1>
+        <p class="text-center">
+            Below you will see all items currently in inventory.
+            As well as a form to add more items to your inventory.
+        </p>
+        <form class="form-group item-submit col-6 text-center mx-auto">
+            <div>
+                <label for="item-name" class="fontstyle py-1">Enter the name of the new item: </label>
+                <input type="text" class="form-control" id="item-name" placeholder="Item Name"/>
+            </div>
+            <div>
+                <label for="item-quantity" class="fontstyle py-1">Enter the quantity of the new item:</label>
+                <input type="number" class="form-control" id="item-quantity" placeholder="Amount"/>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-dark">submit</button>
+            </div>
+        </form>
+    </div>
+    {{#each inventory}}
+        <div class="col-3 text-center mt-2 card">
+            <h2>
+                Item Name:
+                {{itemName}}
+            </h2>
+            <p>Quantity:{{quantity}}</p>
+        </div>
+    {{/each}}
+</div>
+
+<script src="/js/items.js"></script>

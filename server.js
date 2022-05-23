@@ -1,20 +1,34 @@
+const path = require('path');
 const express = require('express');
-const mongoose = require('mongoose');
+const routes = require('./controllers');
+const sequelize = require('./config/connection');
+const exphbs = require('express-handlebars');
+const hbs = exphbs.create({});
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+const sess = {
+    secret: 'Super secret secret',
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        db: sequelize
+    })
+};
 
 const app = express();
-const PORT = process.env.PORT ||  3001;
+const PORT = process.env.PORT || 3001;
 
+app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
-app.use(require('./routes'));
+app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/social-networ', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+sequelize.sync({ force: false }).then(() => {
+    app.listen(PORT, () => console.log(`Now listening on port:${PORT}`));
 });
-
-mongoose.set('debug', true);
-
-app.listen(PORT, () => console.log(`Connected on localhost:${PORT}`));

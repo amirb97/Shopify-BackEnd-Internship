@@ -1,32 +1,31 @@
-const { Schema, model } =  require('mongoose');
-const dateFormat = require('../utils/dateFormat');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-const ItemSchema = new Schema(
+class Item extends Model {}
+
+Item.init(
     {
-        itemName: {
-            type: String,
-            required: true,
-            minlength: 1,
-            maxlength: 280
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true
         },
-        createdAt:  {
-            type: Date,
-            default: Date.now,
-            get: createdAtVal  => dateFormat(createdAtVal)
+        itemName: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
         quantity: {
-            type: Number,
-            required: true
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     },
     {
-        toJSON: {
-            getters: true
-        },
-        id: false
+        sequelize,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'item'
     }
-);
-
-const Item = model('Item', ItemSchema);
+)
 
 module.exports = Item;
