@@ -1,5 +1,5 @@
 {
-  "name": "group-project-2",
+  "name": "shopify-internship",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amirb97/desktop-wallpaper-voting-site.git"
+    "url": "git+https://github.com/amirb97/Shopify-BackEnd-Internship.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/amirb97/desktop-wallpaper-voting-site/issues"
+    "url": "https://github.com/amirb97/Shopify-BackEnd-Internship/issues"
   },
-  "homepage": "https://github.com/amirb97/desktop-wallpaper-voting-site#readme",
+  "homepage": "https://github.com/amirb97/Shopify-BackEnd-Internship#readme",
   "dependencies": {
     "connect-session-sequelize": "^7.1.2",
     "dotenv": "^14.3.2",
